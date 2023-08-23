@@ -4,9 +4,35 @@ Variables
 ======
 */
 :root {
+    /* dark shades of primary color*/
+    --clr-primary-1: hsl(205, 86%, 17%);
+    --clr-primary-2: hsl(205, 77%, 27%);
+    --clr-primary-3: hsl(205, 72%, 37%);
+    --clr-primary-4: hsl(205, 63%, 48%);
+    /* primary/main color */
+    --clr-primary-5: hsl(205, 78%, 60%);
+    /* lighter shades of primary color */
+    --clr-primary-6: hsl(205, 89%, 70%);
+    --clr-primary-7: hsl(205, 90%, 76%);
+    --clr-primary-8: hsl(205, 86%, 81%);
+    --clr-primary-9: hsl(205, 90%, 88%);
+    --clr-primary-10: hsl(205, 100%, 96%);
+    /* darkest grey - used for headings */
+    --clr-grey-1: hsl(209, 61%, 16%);
+    --clr-grey-2: hsl(211, 39%, 23%);
+    --clr-grey-3: hsl(209, 34%, 30%);
+    --clr-grey-4: hsl(209, 28%, 39%);
+    /* grey used for paragraphs */
+    --clr-grey-5: hsl(210, 22%, 49%);
+    --clr-grey-6: hsl(209, 23%, 60%);
+    --clr-grey-7: hsl(211, 27%, 70%);
+    --clr-grey-8: hsl(210, 31%, 80%);
+    --clr-grey-9: hsl(212, 33%, 89%);
+    --clr-grey-10: hsl(210, 36%, 96%);
     --primaryLightColor: #d4e6a5;
     --primaryColor: #476a2e;
     --primaryDarkColor: #c02c03;
+    --clr-red-dark: hsl(360, 67%, 44%);
     --mainWhite: #fff;
     --offWhite: #f7f7f7;
     --mainBackground: #f1f5f8;
@@ -147,13 +173,33 @@ Variables
     margin: 0 auto;
     max-width: var(--fullWidth);
   }
-  .nav-links {
+  .nav-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .nav-toggle {
+    font-size: 1.5rem;
+    color: var(--clr-primary-5);
+    background: transparent;
+    border-color: transparent;
+    transition: var(--mainTransition);
+    cursor: pointer;
+    padding-right: 10px;
+  }
+  .nav-toggle:hover {
+    color: var(--clr-primary-2);
+  }
+
+  .links-container {
+    height: 0;
+    overflow: hidden;
+    transition: var(--transition);
   }
   .nav-links a {
     text-transform: capitalize;
-    display: inline-block;
+    display: block;
     font-weight: bold;
     margin-right: 0.5rem;
     font-weight: 400;
@@ -168,6 +214,105 @@ Variables
   .logo {
     width: 12rem;
   }
+  @media screen and (min-width: 800px) {
+    .nav-toggle {
+      display: none;
+    }
+    .links-container {
+      height: auto !important;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+    .nav-links a {
+      display: inline-block;
+      padding: 0;
+      margin: 0 0.5rem;
+    }
+    .nav-links a:hover {
+      padding: 0;
+      background: transparent;
+    }
+  }
+  
+  /* 
+  ====== 
+  Sidebar
+  ======
+  */
+  .close-btn {
+    font-size: 1.75rem;
+    background: transparent;
+    border-color: transparent;
+    color: var(--clr-primary-5);
+    transition: var(--mainTransition);
+    cursor: pointer;
+    color: var(--primaryDarkColor);
+    margin-top: 0.2rem;
+  }
+  .close-btn:hover {
+    color: var(--mainRed);
+  }
+  .links a {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    text-transform: capitalize;
+    padding: 1rem 1.5rem;
+    color: var(--clr-grey-3);
+    transition: var(--mainTransition);
+    letter-spacing: var(--mainSpacing);
+  }
+  
+  .links a:hover {
+    background: var(--clr-grey-10);
+    color: var(--clr-grey-2);
+  }
+  .links a svg {
+    font-size: 1.5rem;
+    color: var(--clr-grey-5);
+    margin-right: 1rem;
+    transition: var(--mainTransition);
+  }
+  .links a:hover svg {
+    color: var(--clr-grey-4);
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--mainWhite);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    row-gap: 1rem;
+    box-shadow: var(--clr-red-dark);
+    transition: var(--mainTransition);
+    transform: translate(-100%);
+  }
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+  .show-sidebar {
+    transform: translate(0);
+  }
+  @media screen and (min-width: 676px) {
+    .sidebar {
+      width: 400px;
+    }
+  }
+  @media screen and (min-width: 800px) {
+    .sidebar {
+        display: none;
+    }
+  }
+  
+
   /* 
   ====== 
   About

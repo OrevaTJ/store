@@ -7,6 +7,11 @@ const AppProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
     const [searchItem, setSearchItem] = useState('') 
     const [products, setProducts] = useState([])
+    const [isSidebar, setIsSidebar] = useState(false);
+
+    const toggleSidebar = () => {
+        setIsSidebar(!isSidebar);
+    }
 
     const fetchItems = useCallback(async () =>{
         setLoading(true)
@@ -20,7 +25,7 @@ const AppProvider = ({ children }) => {
             } else {
                 setProducts([])
             }false
-            setLoading()
+            setLoading(false)
         } catch (error) {
             console.log(error)
             setLoading(false)
@@ -33,7 +38,10 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-        value={{products, loading}}
+        value={{
+            products, loading,
+            isSidebar, toggleSidebar
+        }}
     >
         { children }
     </AppContext.Provider>
