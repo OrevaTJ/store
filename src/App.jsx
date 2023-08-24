@@ -11,6 +11,7 @@ import { About } from './pages/About'
 import { Contact } from './pages/Contact'
 import { SingleItem } from './pages/SingleItem'
 import { Error } from './pages/Error'
+import { Cart } from './pages/Cart'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/singleItem/:id' element={<SingleItem />} />
+        <Route path='/cart' element={<Cart />} />
         <Route path='*' element={<Error />} />
       </Routes>
       <Footer />

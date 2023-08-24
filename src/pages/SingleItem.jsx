@@ -53,7 +53,7 @@ export const SingleItem = () => {
           </p>
           <p>
             <span className='item-data'>price :</span>
-            {price}
+            ${price}
           </p>
           <p>
             <span className='item-data'>category :</span>
