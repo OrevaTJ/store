@@ -18,18 +18,28 @@ const AppProvider = ({ children }) => {
     const toggleSidebar = () => {
         setIsSidebar(!isSidebar);
     }
+
+    const clearCart = () => {
+        dispatch({type: 'CLEAR_CART'})
+      }
+
+    const remove = (id) => {
+      dispatch({type: 'REMOVE', itemId: id})
+    }
     
     const addToCart = (id) => {
         // setCartItems([...cartItems, products.filter(item =>
         //     item.id === id
         //     )])
-        
-        // if(checkCart) {
-        //     return
-        // } else {
-        //     console.log(checkCart)
-        // }
-        dispatch({type: 'ADD_CART', payload: id})
+        let check = state.cartItems.find((item) => {
+            return item.id === id
+        })
+        if(check) {
+            console.log(true)
+            return
+        } else {
+            dispatch({type: 'ADD_CART', payload: id})
+        }
         console.log(state.cartItems)
     }
 
@@ -57,7 +67,7 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
         value={{
-            ...state, loading,
+            ...state, loading, clearCart, remove,
             isSidebar, toggleSidebar, addToCart
         }}
     >

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../../Context'
 
 export const Product = ({ id, title, price, image, category }) => {
-    const {addToCart} = useGlobalContext()
+    const {addToCart, products} = useGlobalContext()
+    // console.log(products)
 
   return (
     <article className='product'>
