@@ -12,21 +12,29 @@ import { Contact } from './pages/Contact'
 import { SingleItem } from './pages/SingleItem'
 import { Error } from './pages/Error'
 import { Cart } from './pages/Cart'
+import { CreateAccount } from './pages/CreateAccount'
+import { Profile } from './pages/Profile'
+import { LoginPage } from './pages/LoginPage'
+import { Sidebar } from './components/Sidebar'
 
 
 function App() {
 
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/singleItem/:id' element={<SingleItem />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='*' element={<Error />} />
-      </Routes>
+        <Navbar />
+        <Sidebar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/singleItem/:id' element={<SingleItem />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/create-account' element={<CreateAccount />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
       <Footer />
     </Router>
   )

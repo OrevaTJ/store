@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../../Context'
+import { useUser } from '../hooks/useUser'
 
 export const Product = ({ id, title, price, image, category }) => {
-    const {addToCart, products} = useGlobalContext()
-    // console.log(products)
+    const {addToCart} = useGlobalContext()
+    const { user } = useUser();
 
   return (
     <article className='product'>
@@ -19,7 +20,7 @@ export const Product = ({ id, title, price, image, category }) => {
             >
                 details
             </Link>
-            <button onClick={() => addToCart(id)}>
+            <button onClick={user ? () => addToCart(id) : null}>
                 add
             </button>
         </div>

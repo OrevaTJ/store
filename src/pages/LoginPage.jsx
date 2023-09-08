@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { TextField, Button, Container, Typography, Grid } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
-import { getAuth, 
-    signInWithEmailAndPassword } from 'firebase/auth'
+import { 
+  getAuth, 
+  signInWithEmailAndPassword 
+} from 'firebase/auth'
+
+  
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('')

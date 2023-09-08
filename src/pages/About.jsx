@@ -2,7 +2,7 @@ import React from 'react'
 
 export const About = () => {
   return (
-    <section className='section about-section'>
+    <section className='section about-section' style={{marginBottom: '100px'}}>
       <h1 className='section-title'>about us</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
