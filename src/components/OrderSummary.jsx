@@ -13,7 +13,7 @@ export default function OrderSummaryItem() {
     const total = totalPrice + shippingCost
 
     const config = {
-      public_key: 'FLWPUBK_TEST-93b9f078f63514a9bcf4f49911345a84-X',
+      public_key: `${import.meta.env.VITE_API_KEY}`,
       tx_ref: Date.now(),
       amount: total,
       currency: 'NGN',
