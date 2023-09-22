@@ -1,16 +1,18 @@
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import { useGlobalContext } from "../../Context";
+import { useNavigate } from "react-router-dom";
 import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 
 export default function OrderSummaryItem() {
-    const { totalPrice } = useGlobalContext()
+    const { totalPrice, clearCart } = useGlobalContext()
     const shippingCost = parseFloat((totalPrice / 20).toFixed(2))
-    const total = totalPrice + shippingCost
+    const total = parseFloat((totalPrice + shippingCost).toFixed(2))
+
+    const navigate = useNavigate()
 
     const config = {
       public_key: `${import.meta.env.VITE_API_KEY}`,
@@ -35,6 +37,8 @@ export default function OrderSummaryItem() {
       text: 'Pay with Flutterwave!',
       callback: (response) => {
          console.log(response);
+         clearCart()
+         navigate('/')
         closePaymentModal() // this will close the modal programmatically
       },
       onClose: () => {

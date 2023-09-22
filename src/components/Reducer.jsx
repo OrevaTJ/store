@@ -7,17 +7,10 @@ const reducer = (state, action) => {
     if (action.type === 'ADD_CART') {
         let [newItem] = state.products.filter(item =>
             item.id === action.payload)
+        console.log(newItem)
         newItem.amount = 1
         return {...state, cartItems: [...state.cartItems, newItem]}
 
-        // if (state.cartItems.includes(newItem)) {
-        //     // console.log(true)
-        //     return
-        // } else {
-        //     // console.log(false)
-        //     // console.log(newItem)
-        //     return {...state, cartItems: [...state.cartItems, newItem]}
-        // }
     }
 
     if (action.type === 'CLEAR_CART') {

@@ -1,27 +1,91 @@
+import { Divider, Typography, Stack, Grid } from '@mui/material';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 export const Profile = () => {
 
   return (
-    <>
-    <section className='section about-section' style={{marginBottom: '100px'}}>
-      <h1 className='section-title'>Profile</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus 
-        eaque nulla animi iusto excepturi! Placeat, id. Pariatur obcaecati 
-        atque fuga recusandae repellat eum aliquam facere nesciunt possimus 
-        dolor tempore velit esse 
-        excepturi voluptatibus quos quo doloribus, molestiae nihil est cum, 
-        error consequatur ex maxime soluta. Beatae vero consequuntur error 
-        esse! Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-        Molestias sequi earum quasi illo non! Nisi, molestias rem! Optio consequatur 
-        culpa ea vitae, maiores esse? Nisi excepturi commodi aspernatur facere eum 
-        assumenda cum incidunt porro, impedit saepe eligendi quasi? Tempore commodi 
-        provident similique quod inventore aspernatur dolor animi in debitis ipsam ut, 
-        repellat perspiciatis nulla? Repellat totam dolor pariatur rerum impedit blanditiis, 
-        repudiandae cumque harum animi commodi fugit sequi dignissimos rem enim. Aperiam corrupti 
-        corporis dolores tempora aliquid ex quis repellat exercitationem dignissimos illum laboriosam 
-        consequatur, alias, minus, neque soluta natus tenetur! Assumenda voluptatum, minus 
-        ipsa amet magnam officiis maxime hic.</p>
-    </section>
-    </>
+    <Stack
+      sx={{
+        m: '5rem auto',
+        minWidth: '350px'
+      }}
+    >
+      <Paper variant="outlined" square elevation={8} sx={{m: '0 10vh', }}>
+        <Typography variant='h5' p={2}>
+          Account Overview
+        </Typography>
+        <Divider />
+        <Grid container spacing={2} textAlign='left' p={2}>
+          <Grid item xs={12} sm={12} md={6}>
+            <Box border={1} borderColor={'rgba(0, 0, 0, 0.12)'} height='200px'>
+              <Typography variant="h6" p={1} gutterBottom>
+                Account Details
+              </Typography>
+              <Divider />
+              <Box p={1}>
+                <Typography variant="body1" paragraph>
+                  Taigbenu Oreva
+                </Typography>
+                <Typography variant="body2" paragraph>
+                  khemical51@gmail.com
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <Box border={1} borderColor={'rgba(0, 0, 0, 0.12)'} height='200px'>
+              <Typography variant="h6" p={1} gutterBottom>
+                Address Book
+              </Typography>
+              <Divider />
+              <Box p={1}>
+                <Typography variant="body1" paragraph>
+                  Your Default Shipping Address
+                </Typography>
+                <Box>
+                  <Typography variant="body2" paragraph p={0} m={0}>Oreva Taigbenu</Typography>
+                  <Typography variant="body2" paragraph p={0} m={0}>Opposite spc, Asaba, Delta State.</Typography>
+                  <Typography variant="body2" paragraph p={0} m={0}>+8103972969</Typography>
+                </Box>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <Box border={1} borderColor={'rgba(4, 2, 24, 0.12)'} height='200px'>
+              <Typography variant="h6" p={1} gutterBottom>
+                Store Credit
+              </Typography>
+              <Divider />
+              <Box p={1} display='flex' color={'rgb(7, 57, 133)'}>
+                <AccountBalanceWalletIcon sx={{pr: '4px'}}/>
+                <Typography variant="h2" fontSize={18} paragraph>
+                  ₦ 0.00
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <Box border={1} borderColor={'rgba(0, 0, 0, 0.12)'} height='200px'>
+              <Typography variant="h6" p={1} gutterBottom>
+                Newsletter Preference
+              </Typography>
+              <Divider />
+              <Box p={1}>
+              <Typography variant="body2" paragraph>
+                You are currently no subscribed to any of our newsletter
+              </Typography>
+              <Typography variant='body2' bottom={1}
+                sx={{m: '68px 0', color: '#ff8f00'}}
+              >
+                EDIT NEWSLETTER PREFERENCE
+              </Typography>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Stack>
   );
 };

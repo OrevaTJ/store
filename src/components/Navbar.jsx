@@ -1,7 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 import {
   Hidden,
   AppBar,
@@ -9,6 +10,7 @@ import {
   Typography,
   IconButton,
   Badge,
+  Box,
   Stack,
   Button,
   InputBase,
@@ -16,6 +18,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { styled, alpha } from '@mui/material/styles';
 import { useState } from 'react';
@@ -85,64 +88,72 @@ export const Navbar = () => {
     },
   }));
 
+
   return (
-    <AppBar>
-      <Toolbar>
+    <AppBar component='nav'
+      sx={{bgcolor: '#f7f7f7', color: '#525151'}}>
+      <Toolbar style={{margin: '0 .2rem', display: 'flex',
+        justifyContent: 'space-between'}}>
         <Hidden mdUp>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            // sx={{ mr: 2 }}
             onClick={() => setIsDrawerOpen(true)}
           >
             <MenuIcon />
           </IconButton>
         </Hidden>
-        <Typography
-          variant="h5"
-          component="div"
-          color="primary.contrastText"
-          sx={{ flexGrow: 1 }}
-        >
-          <Link to="/" style={{ color: 'white' }}>
-            GiTi
-          </Link>
-        </Typography>
-        <Search sx={{ flexGrow: 1 }}>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </Search>
-        <Hidden mdDown>
-          <Stack direction="row" spacing={2} sx={{ px: '2rem' }}>
-            <Button component={Link} to="/" style={{ color: 'white' }}>
-              Home
-            </Button>
-            <Button component={Link} to="/about" style={{ color: 'white' }}>
-              About
-            </Button>
-            <Button component={Link} to="/contact" style={{ color: 'white' }}>
-              Contact
-            </Button>
-            <Button
-              sx={{ color: 'white' }}
-              id="profile-button"
-              onClick={handleClick}
-              aria-controls={open ? 'profile-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? true : undefined}
-              endIcon={<KeyboardArrowDownIcon />}
+        <Link to="/" >
+          <Box sx={{display: 'flex', alignItems: 'center', flexGrow: 1}}>
+            <Typography
+              variant="h4"
+              component="div"
+              color="primary.contrastText"
+              sx={{ flexGrow: 1, fontWeight: '800', color: '#525151' }}
             >
-              Profile
-            </Button>
-          </Stack>
+                GiTi 
+            </Typography>
+            <AcUnitIcon sx={{color: '#ff8f00', fontWeight: '800'}} />
+          </Box>
+        </Link>
+        <Hidden smUp>
+          <SearchIcon sx={{mx: '1.5rem'}}/>
         </Hidden>
+        <Hidden smDown>
+        <Search sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1 }}>
+          <Box sx={{display: 'flex', width: '60%'}}>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Box>
+          <Button variant='contained' size='small' 
+            sx={{bgcolor: '#ff8f00', height: ''}}
+          >
+            Search
+          </Button>
+        </Search>
+        </Hidden>
+        <Stack direction="row" spacing={2} 
+        sx={{ pl: '2rem', pr: '.7rem'}}>
+          <Button
+            id="profile-button"
+            onClick={handleClick}
+            aria-controls={open ? 'profile-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? true : undefined}
+            endIcon={<KeyboardArrowDownIcon />}
+            sx={{color: '#525151', fontWeight: '600'}}
+          >
+            <AccountCircleIcon sx={{color: '#ff8f00'}}/> Account
+          </Button>
+        </Stack>
         <Menu
           id="profile-menu"
           anchorEl={anchorEl}
@@ -158,9 +169,15 @@ export const Navbar = () => {
           <MenuItem onClick={handleClose}>Vouchers</MenuItem>
           <MenuItem onClick={handleClose}>
             {user ? (
-              <Button onClick={logOut}>Log Out</Button>
+              <Button variant='contained' onClick={logOut}
+              sx={{bgcolor: '#ff8f00'}}>
+                Log Out
+              </Button>
             ) : (
-              <Button onClick={() => navigate('/login')}>Login</Button>
+              <Button onClick={() => navigate('/login')}
+              sx={{bgcolor: '#ff8f00'}}>
+                Login
+              </Button>
             )}
           </MenuItem>
         </Menu>
@@ -170,77 +187,20 @@ export const Navbar = () => {
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
-              color: 'white',
+              fontWeight: '600',
+              pr: {sm: '26px'}
             }}
           >
             <IconButton aria-label="shopping cart">
-              <Badge badgeContent={user ? cartAmount : 0} color="error">
+              <Badge badgeContent={user ? cartAmount : 0} color="error"
+              sx={{fontWeight: '600', color: 'error'}}>
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
-            <Typography>Cart</Typography>
+            <Typography variant='body2' sx={{color: '#525151', fontWeight: '600'}}>Cart</Typography>
           </Stack>
         </Link>
       </Toolbar>
     </AppBar>
   );
 };
-
-// import React from 'react'
-// import { Searchbar } from './Searchbar'
-// import { Link } from 'react-router-dom'
-// import { FaBars, FaTimes, FaHome } from 'react-icons/fa'
-// import { FcAbout } from 'react-icons/fc'
-// import { GrContact } from 'react-icons/gr'
-// import { CgProfile } from 'react-icons/cg'
-// import { BsCart4 } from 'react-icons/bs'
-// import { useGlobalContext } from '../../Context'
-// import { useUser } from '../hooks/useUser'
-
-// export const Navbar = () => {
-// const {isSidebar, toggleSidebar, cartAmount} = useGlobalContext()
-// const { user, isLoading } = useUser()
-
-//   return (
-//     <>
-//       <nav className='navbar'>
-//         <div className="nav-center">
-//           <div className='nav-header'>
-//             <button className='nav-toggle' onClick={toggleSidebar}>
-//               <FaBars />
-//             </button>
-//             <Link to='/'>
-//               <img src='#' alt='Logo' />
-//             </Link>
-//           </div>
-//           <div className='links-container'>
-//             <ul className='nav-links'>
-//               <li>
-//                 <Link to='/'>Home</Link>
-//                 <Link to='/about'>About</Link>
-//                 <Link to='/contact'>Contact</Link>
-//               </li>
-//             </ul>
-//           </div>
-//           <div className='nav-end'>
-//             <Link to={user ? '/profile' : '/login'}>
-//               <CgProfile />
-//             </Link>
-//             <div className='nav-cart'>
-//               <Link to={user ? '/cart' : '/login'}>
-//                 {/* <h3>Cart</h3> */}
-//                 {/* <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
-//                   <path d='M16 6v2h2l2 12H0L2 8h2V6a6 6 0 1 1 12 0zm-2 0a4 4 0 1 0-8 0v2h8V6zM4 10v2h2v-2H4zm10 0v2h2v-2h-2z' />
-//                 </svg> */}
-//                 <BsCart4 />
-//                 <div className='amount-container'>
-//                   <p className='total-amount'>{cartAmount}</p>
-//                 </div>
-//               </Link>
-//             </div>
-//           </div>
-//         </div>
-//       </nav>
-// </>
-//   )
-// }

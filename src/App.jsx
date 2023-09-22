@@ -16,6 +16,7 @@ import { CreateAccount } from './pages/CreateAccount'
 import { Profile } from './pages/Profile'
 import { LoginPage } from './pages/LoginPage'
 import { Sidebar } from './components/Sidebar'
+import { NewsLetter } from './components/NewsLetter'
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path='/create-account' element={<CreateAccount />} />
           <Route path='*' element={<Error />} />
         </Routes>
+        <NewsLetter />
       <Footer />
     </Router>
   )

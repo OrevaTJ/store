@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { useGlobalContext } from '../../Context';
@@ -9,26 +8,22 @@ import {
   Typography,
   Stack,
   Button,
-  Menu,
-  MenuItem,
+  Avatar,
+  ListItemButton,
 } from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import HomeIcon from '@mui/icons-material/Home';
+import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import CableIcon from '@mui/icons-material/Cable';
+import LaptopIcon from '@mui/icons-material/Laptop';
+import GamepadIcon from '@mui/icons-material/Gamepad';
 
 export const Sidebar = () => {
   const { isDrawerOpen, setIsDrawerOpen } = useGlobalContext();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
   const { user } = useUser();
 
   const navigate = useNavigate();
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const logOut = () => {
     signOut(getAuth());
@@ -42,54 +37,105 @@ export const Sidebar = () => {
       open={isDrawerOpen}
       onClose={() => setIsDrawerOpen(false)}
     >
-      <Box p={2} width="250px" textAlign="center" role="presentation">
-        <Typography variant="h6" component="div">
-          GiTi
-        </Typography>
-      </Box>
-      <Stack direction="column" spacing={2} sx={{ px: '2rem' }}>
-        <Button component={Link} to="/" style={{ color: 'black' }}>
-          Home
-        </Button>
-        <Button component={Link} to="/about" style={{ color: 'black' }}>
-          About
-        </Button>
-        <Button component={Link} to="/contact" style={{ color: 'black' }}>
-          Contact
-        </Button>
-        <Button
-          sx={{ color: 'black' }}
-          id="profile-button"
-          onClick={handleClick}
-          aria-controls={open ? 'profile-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? true : undefined}
-          endIcon={<KeyboardArrowDownIcon />}
-        >
-          Profile
-        </Button>
+      <Stack sx={{width: '200px', p: '10px 20px'}}>
+        <Box sx={{display: 'flex', alignItems: 'center', p: '1rem'}}>
+          <Typography
+            variant="h4"
+            component="div"
+            color="primary.contrastText"
+            sx={{fontWeight: '800' }}
+          >
+            <Link to="/" >
+              GiTi 
+            </Link>
+          </Typography>
+          <AcUnitIcon sx={{color: '#ff8f00', fontWeight: '800'}} />
+        </Box>
+        <Stack direction="column" sx={{py: '8px'}}>
+          <Box sx={{display: 'flex', py: '12px', m: '0 16px'}}>
+            <ListItemButton sx={{p: '0'}}>
+              <Avatar sx={{width: 18, height: 18, bgcolor: '#646361'}}>
+                <HomeIcon sx={{width: 18, height: 18}}/>
+              </Avatar>
+              <Typography variant='body2' sx={{px: '6px',
+                fontSize: '.85rem', fontWeight: '500'}}>
+                  Home & Office
+              </Typography>
+            </ListItemButton>
+          </Box>
+          <Box sx={{display: 'flex', py: '12px', m: '0 16px'}}>
+            <ListItemButton sx={{p: '0'}}>
+              <Avatar sx={{width: 18, height: 18, bgcolor: '#646361'}}>
+                <MedicationLiquidIcon sx={{width: 18, height: 18}}/>
+              </Avatar>
+              <Typography variant='body2' sx={{px: '6px',
+                fontSize: '.85rem', fontWeight: '500'}}>
+                  Health & Beauty
+              </Typography>
+            </ListItemButton>
+          </Box>
+          <Box sx={{display: 'flex', py: '12px', m: '0 16px'}}>
+            <ListItemButton sx={{p: '0'}}>
+              <Avatar sx={{width: 18, height: 18, bgcolor: '#646361'}}>
+                <PhoneIphoneIcon sx={{width: 18, height: 18}}/>
+              </Avatar>
+              <Typography variant='body2' sx={{px: '6px',
+                fontSize: '.85rem', fontWeight: '500'}}>
+                  Phone & Tablets
+              </Typography>
+            </ListItemButton>
+          </Box>
+          <Box sx={{display: 'flex', py: '12px', m: '0 16px'}}>
+            <ListItemButton sx={{p: '0'}}>
+              <Avatar sx={{width: 18, height: 18, bgcolor: '#646361'}}>
+                <CableIcon sx={{width: 18, height: 18}}/>
+              </Avatar>
+              <Typography variant='body2' sx={{px: '6px',
+                fontSize: '.85rem', fontWeight: '500'}}>
+                  Electronics
+              </Typography>
+            </ListItemButton>
+          </Box>
+          <Box sx={{display: 'flex', py: '12px', m: '0 16px'}}>
+            <ListItemButton sx={{p: '0'}}>
+              <Avatar sx={{width: 18, height: 18, bgcolor: '#646361'}}>
+                <LaptopIcon sx={{width: 18, height: 18}}/>
+              </Avatar>
+              <Typography variant='body2' sx={{px: '6px',
+                fontSize: '.85rem', fontWeight: '500'}}>
+                  Computing
+              </Typography>
+            </ListItemButton>
+          </Box>
+          <Box sx={{display: 'flex', py: '12px', m: '0 16px'}}>
+            <ListItemButton sx={{p: '0'}}>
+              <Avatar sx={{width: 18, height: 18, bgcolor: '#646361'}}>
+                <GamepadIcon sx={{width: 18, height: 18}}/>
+              </Avatar>
+              <Typography variant='body2' sx={{px: '6px', 
+                fontSize: '.85rem', fontWeight: '500'}}>
+                Gaming
+              </Typography>
+            </ListItemButton>
+          </Box>
+        </Stack>
+        <Box sx={{position: 'absolute', bottom: '0', m: '8px 16px'}}>
+          {user ? (
+            <Button variant='contained'
+              sx={{bgcolor: '#ff8f00'}} onClick={logOut}
+            >
+              Log Out
+            </Button>
+          ) : (
+            <Button variant='contained' 
+              onClick={() => navigate('/login')}
+              sx={{bgcolor: '#ff8f00'}}
+            >
+              Login
+            </Button>
+          )}
+        </Box>
       </Stack>
-      <Menu
-        id="profile-menu"
-        anchorEl={anchorEl}
-        open={open}
-        MenuListProps={{ 'aria-labelledby': 'profile-button' }}
-        onClose={handleClose}
-      >
-        <MenuItem>
-          <Link to={user ? '/profile' : '/login'}>My Account</Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>Orders</MenuItem>
-        <MenuItem onClick={handleClose}>Inbox</MenuItem>
-        <MenuItem onClick={handleClose}>Vouchers</MenuItem>
-      </Menu>
-      <Box>
-        {user ? (
-          <Button onClick={logOut}>Log Out</Button>
-        ) : (
-          <Button onClick={() => navigate('/login')}>Login</Button>
-        )}
-      </Box>
     </Drawer>
   );
 };

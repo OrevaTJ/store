@@ -5,7 +5,6 @@ import {
   CardActions,
   CardMedia,
   Typography,
-  Grid,
   Box,
   Stack,
 } from '@mui/material';
@@ -40,7 +39,7 @@ export default function ShoppingCartItem({
                   {category}
                 </Typography>
                 <Typography variant="div" component="h2">
-                  {title}
+                  {title.substring(0, 24)}...
                 </Typography>
                 <Divider sx={{ my: 2 }} />
             </Box>
@@ -56,7 +55,8 @@ export default function ShoppingCartItem({
           >
             ₦{price}
           </Typography>
-          <CardActions direction="row" alignItems="center">
+          <CardActions direction="row" alignItems="center"
+            sx={{height: '1rem', p: '0'}}>
             <Typography>Quantity: </Typography>
             <IconButton aria-label="delete" onClick={() => decrease(id)}>
               <RemoveCircleIcon />

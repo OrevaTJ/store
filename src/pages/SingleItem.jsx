@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { Loading } from '../components/Loading'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { Loading } from '../components/Loading';
+import { useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { useGlobalContext } from '../../Context';
+import { useUser } from '../hooks/useUser';
 
 const url = 'https://fakestoreapi.com/products/'
 
@@ -8,6 +11,8 @@ export const SingleItem = () => {
   const {id} = useParams()
   const [loading, setLoading] = useState(false)
   const [product, setProduct] = useState(null)
+  const {addToCart} = useGlobalContext()
+  const { user } = useUser();
 
   const fetchProduct = async () => {
     setLoading(true)
@@ -62,6 +67,12 @@ export const SingleItem = () => {
             <span className='item-data'>description :</span>
             {description}
           </p>
+          {/* TODO: Error adding to cart */}
+          {/* <Button variant='contained'
+            sx={{bgcolor: '#ff8f00', width: '100%' }}
+            onClick={user ? () => addToCart(id) : null}>
+            Add to cart
+          </Button> */}
         </div>
       </div>
     </section>
