@@ -7,6 +7,10 @@ export type CartWithProduct = Prisma.CartGetPayload<{
   include: { cartItems: { include: { product: true } } }
 }>
 
+export type CartItemWithProduct = Prisma.CartItemGetPayload<{
+  include: { product: true };
+}>;
+
 export type ShoppingCart = CartWithProduct & {
   totalItems: number;
   totalPrice: number;
@@ -28,7 +32,6 @@ export async function createCart(): Promise<ShoppingCart> {
   };
 }
 
-// Get cart from db whose id = id in cookies
 export async function getCart(): Promise<ShoppingCart | null> {
   const localCartId = cookies().get("localCartId")?.value
 

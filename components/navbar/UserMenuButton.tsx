@@ -2,13 +2,6 @@
 
 "use client";
 
-// useSession() - a React Hooks to access the session data and status in 
-// client components. import { useSession } from "next-auth/react";
-// const {data: session, status} = useSession()
-// Session | null is return value of session
-// But here we get session as prop from server side from Navbar component
-
-
 import { Session } from "next-auth";
 import Image from "next/image";
 import profilePicPlaceholder from "@/assets/profile-pic-placeholder.png"
@@ -50,8 +43,6 @@ export default function UserMenuButton({ session }: UserMenuButtonProps) {
       >
         <li>
           {
-        // Using signOut/signIn redirects back to previous pages. Adding 
-        // callback explicitly sets the redirect
             user ? (
                 <button onClick={() => signOut({callbackUrl: "/"})}>Sign Out</button>
             ) : (

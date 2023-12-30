@@ -1,9 +1,9 @@
 "use server";
+
 import { createCart, getCart } from "@/lib/db/cart";
 import { prisma } from "@/lib/db/prisma";
 import { revalidatePath } from "next/cache";
 
-// at the top since file only contains sever actions
 
 export async function changeProductQuantity(productId: string) {
   const cart = (await getCart()) ?? (await createCart());
@@ -30,7 +30,7 @@ export async function changeProductQuantity(productId: string) {
       data: {
         cartItems: {
           create: {
-            productId, // productId: productId from props
+            productId,
             quantity: 1,
           },
         },
