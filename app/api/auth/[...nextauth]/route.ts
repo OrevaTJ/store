@@ -8,6 +8,7 @@ import { Adapter } from "next-auth/adapters";
 import { env } from "@/lib/env";
 import { PrismaClient } from "@prisma/client";
 import { prisma } from "@/lib/db/prisma";
+import { mergeAnonymCartToUserCart } from "@/lib/db/cart";
 
 // Create auth server config
 export const authOptions: NextAuthOptions = {
@@ -18,6 +19,18 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+  callbacks: {
+    session({ session, user }) {
+      session.user.id = user.id;
+
+      return session;
+    },
+  },
+  events: {
+    async signIn({ user }) {
+      await mergeAnonymCartToUserCart(user.id);
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
