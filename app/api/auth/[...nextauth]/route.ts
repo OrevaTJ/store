@@ -10,7 +10,6 @@ import { PrismaClient } from "@prisma/client";
 import { prisma } from "@/lib/db/prisma";
 import { mergeAnonymCartToUserCart } from "@/lib/db/cart";
 
-// Create auth server config
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma as PrismaClient) as Adapter,
   providers: [
